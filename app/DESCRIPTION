@@ -1,1 +1,18 @@
-
+Package: LocRet
+Title: Local Retail Price Comparison - Akshika Group
+Version: 2.0.0
+Authors@R: person("Akshika", "Group", 
+                  email = "tech@akshikagroup.com", 
+                  role = c("aut", "cre"))
+Description: Comprehensive retail price comparison app 
+             for Bihar local vendors with payment gateway
+License: MIT + file LICENSE
+Depends: R (>= 4.2.0)
+Imports: 
+    shiny,
+    shinyWidgets,
+    DT,
+    shinythemes,
+    plotly,
+    bslib,
+    shinyjs
