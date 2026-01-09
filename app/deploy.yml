@@ -1,1 +1,28 @@
+name: 🚀 Deploy LocRet to GitHub Pages
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
 
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    
+    - uses: r-lib/actions/setup-r@v2
+    
+    - uses: r-lib/actions/setup-r-dependencies@v2
+      with:
+        extra-packages: |
+          shiny shinyWidgets DT shinythemes plotly bslib shinyjs shinytest2 shinydashboard
+    
+    - name: Export to Shinylive
+      run: Rscript -e "install.packages('shinylive'); shinylate::export(app_dir = '.', dest_dir = 'docs')"
+    
+    - name: Deploy to GitHub Pages
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./docs
